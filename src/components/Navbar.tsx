@@ -110,10 +110,10 @@ const Navbar = () => {
               }`}>
                 CrystalFloss
               </h1>
-              <h2 className={`font-bold font-heading capitalize ${
+              <h2 className={`font-medium font-heading capitalize ${
                 isScrolled 
-                  ? 'text-sm md:text-base lg:text-lg' 
-                  : 'text-sm md:text-base lg:text-lg'
+                  ? 'text-xs md:text-sm lg:text-base' 
+                  : 'text-xs md:text-sm lg:text-base'
               }`}>
                 Dental Clinic
               </h2>

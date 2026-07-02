@@ -12,7 +12,11 @@ const Footer = () => {
           <div className="space-y-6">
             <div className="flex items-center">
               <img src="/assets/images/footer_logo.png" className="w-16 h-16 object-contain" />
-              <span className="ml-3 text-xl font-bold font-heading tracking-tight capitalize text-white">crystalfloss dental clinic</span>
+              <div className="ml-3">
+                <span className="text-xl font-bold font-heading tracking-tight text-white">CrystalFloss</span>
+                <br />
+                <span className="text-sm font-medium font-heading tracking-tight text-slate-300">Dental Clinic</span>
+              </div>
             </div>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
               Premium dental care for international patients in India. 
