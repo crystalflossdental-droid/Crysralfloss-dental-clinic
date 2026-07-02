@@ -18,14 +18,15 @@ const Footer = () => {
               Premium dental care for international patients in India. 
               World-class treatments at affordable prices with a memorable experience.
             </p>
-            <div className="flex space-x-4">
+            <div className="flex space-x-4 items-center">
               <a 
                 href="https://www.instagram.com/crystalfloss.dentalclinic?igsh=OHFiZm5vcHM0a3hp" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700/50 flex items-center justify-center transition-all hover:bg-primary-600 hover:border-primary-500 hover:scale-110"
+                className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-800 border border-slate-700/50 transition-all hover:bg-primary-600 hover:border-primary-500 hover:scale-105"
               >
                 <Instagram className="h-5 w-5 text-white" />
+                <span className="text-sm font-medium text-slate-300 hover:text-white">@crystalfloss.dentalclinic</span>
               </a>
             </div>
           </div>

@@ -75,45 +75,74 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
+        <div className="flex items-center justify-between">
+          {/* Left: Logo and Clinic Name */}
           <div className="flex items-center">
+            {/* Mobile Menu Toggle - Only on mobile, before logo */}
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className={`md:hidden focus:outline-none mr-4 ${isScrolled ? 'text-gray-800' : 'text-white'}`}
+              aria-label="Toggle mobile menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+            
+            {/* Logo */}
             <img 
               src="/assets/images/footer_logo.png" 
               className={`transition-all duration-500 object-contain ${
                 isScrolled 
-                  ? 'h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24' 
-                  : 'h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36'
-              }`}
+                  ? 'w-12 h-12 md:w-16 md:h-16' 
+                  : 'w-16 h-16'
+              }`} 
             />
+            
+            {/* Clinic Name - Two lines: CrystalFloss on top, Dental Clinic below */}
+            <div className={`ml-4 transition-all duration-500 ${
+              isScrolled 
+                ? 'text-slate-900' 
+                : 'text-white'
+            }`}>
+              <h1 className={`font-bold font-heading capitalize ${
+                isScrolled 
+                  ? 'text-base md:text-lg lg:text-xl' 
+                  : 'text-base md:text-lg lg:text-xl'
+              }`}>
+                CrystalFloss
+              </h1>
+              <h2 className={`font-bold font-heading capitalize ${
+                isScrolled 
+                  ? 'text-sm md:text-base lg:text-lg' 
+                  : 'text-sm md:text-base lg:text-lg'
+              }`}>
+                Dental Clinic
+              </h2>
+            </div>
           </div>
 
-          {/* Clinic Name - Centered */}
-      
+          {/* Right: Desktop Navigation and Button */}
+          <div className="hidden md:flex md:items-center md:space-x-6">
+            <nav className="flex items-center space-x-1 lg:space-x-3 xl:space-x-6">
+              {['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'].map((item) => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize font-heading font-semibold transition-all duration-300 border-b-2 pb-1 text-sm lg:text-base px-1 ${
+                    activeSection === item
+                      ? isScrolled
+                        ? 'text-primary-600 border-primary-600'
+                        : 'text-white border-white'
+                      : isScrolled
+                      ? 'text-slate-600 border-transparent hover:text-primary-600 hover:border-primary-600/30'
+                      : 'text-slate-200 border-transparent hover:text-white hover:border-white/50'
+                  }`}
+                >
+                  {item}
+                </button>
+              ))}
+            </nav>
 
-          {/* Desktop Navigation */}
-          <nav className="hidden md:flex md:items-center md:space-x-1 lg:space-x-3 xl:space-x-6">
-            {['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'].map((item) => (
-              <button
-                key={item}
-                onClick={() => scrollToSection(item)}
-                className={`capitalize font-heading font-semibold transition-all duration-300 border-b-2 pb-1 text-sm lg:text-base px-1 ${
-                  activeSection === item
-                    ? isScrolled
-                      ? 'text-primary-600 border-primary-600'
-                      : 'text-white border-white'
-                    : isScrolled
-                    ? 'text-slate-600 border-transparent hover:text-primary-600 hover:border-primary-600/30'
-                    : 'text-slate-200 border-transparent hover:text-white hover:border-white/50'
-                }`}
-              >
-                {item}
-              </button>
-            ))}
-          </nav>
-
-          {/* Desktop Contact Button */}
-          <div className="hidden md:block">
+            {/* Desktop Contact Button */}
             <Button
               onClick={() => scrollToSection('contact')}
               variant={isScrolled ? 'primary' : 'outline-white'}
@@ -123,24 +152,6 @@ const Navbar = () => {
               Get in Touch 
             </Button>
           </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className={`md:hidden focus:outline-none ${isScrolled ? 'text-gray-800' : 'text-white'}`}
-            aria-label="Toggle mobile menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        {/* Mobile Clinic Name */}
-        <div className="lg:hidden text-center mt-2">
-          <h2 className={`text-lg font-bold font-heading ${
-            isScrolled ? 'text-slate-900' : 'text-white'
-          }`}>
-            CrystalFloss Dental Clinic
-          </h2>
         </div>
 
         {/* Mobile Navigation */}
