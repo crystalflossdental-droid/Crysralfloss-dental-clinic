@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, {  useRef } from "react";
+import { Star } from "lucide-react";
 
 interface TestimonialItem {
   id: number;
@@ -6,56 +7,63 @@ interface TestimonialItem {
   role: string;
   quote: string;
   avatar: string;
+  rating?: number;
 }
 
 const testimonials: TestimonialItem[] = [
   {
     id: 1,
     name: "Geetansh Makkar",
-    role: "Smile Makeover Patient",
+    role: "Preventive Dentistry Patient",
     quote:
       "Working with CrystalFloss felt effortless. They guided me through the process and delivered a smile that exceeded expectations.",
     avatar: "GM",
+    rating: 5,
   },
   {
     id: 2,
     name: "Nikita Gupta",
-    role: "Dental Implant Patient",
+    role: "Restoration & Filling Patient",
     quote:
       "CrystalFloss integrated their professional approach with a patient-friendly experience. I'm thrilled with the results!",
     avatar: "NG",
+    rating: 5,
   },
   {
     id: 3,
     name: "Preeti Rathi",
-    role: "Teeth Whitening Patient",
+    role: "Teeth Cleaning Patient",
     quote:
       "From regular check-ups to cosmetic dentistry, CrystalFloss transformed my dental health experience. A+!",
     avatar: "PR",
+    rating: 5,
   },
   {
     id: 4,
     name: "Dot U",
-    role: "Teeth Whitening Patient",
+    role: "Dental Crown Patient",
     quote:
-      "Top-notch facility and professional service. Crysralfloss dental clinic is easily the best dental clinic I’ve visited. They are very punctual, so I had almost no waiting time. At first I was scared little bit but when I saw the patients and after talking with them i got a bunch of nice reviews. They use the latest dental tools and follow strict hygiene protocols. Very satisfied with the results of my treatment of teeths !",
+      "Top-notch facility and professional service. Crysralfloss dental clinic is easily the best dental clinic I've visited. They are very punctual, so I had almost no waiting time. At first I was scared little bit but when I saw the patients and after talking with them i got a bunch of nice reviews. They use the latest dental tools and follow strict hygiene protocols. Very satisfied with the results of my treatment of teeths !",
     avatar: "DU",
+    rating: 5,
   },
   {
     id: 5,
     name: "Vikas Kamra",
-    role: "Teeth Whitening Patient",
+    role: "Pediatric Dentistry Patient",
     quote:
       "We had excellent experience with the doctor. She handled the case of my 6 year old with compassion and patience. Made her feel at ease. Highly recommended!",
     avatar: "VK",
+    rating: 5,
   },
   {
     id: 6,
     name: "Ansh varshney",
-    role: "Teeth Whitening Patient",
+    role: "RCT (Root Canal Treatment) Patient",
     quote:
       "Great experience! Highly trained staff, clean clinic and painless treatment. Highly recommended.",
     avatar: "AV",
+    rating: 5,
   },
   {
     id: 7,
@@ -64,57 +72,77 @@ const testimonials: TestimonialItem[] = [
     quote:
       "I got my RCT done from here. It was painless and very comfortable. Highly recommend CrystalFloss Dental Clinic Noida sector 52",
     avatar: "AK",
+    rating: 5,
   },
   {
     id: 8,
     name: "Swati Nain",
-    role: "Teeth Whitening Patient",
+    role: "Restoration & Filling Patient",
     quote:
       "Dr.Millan is a very brilliant ,soft spoken and polite doctor.She gives best treatment in less visit. I highly recommend Crystal Floss Dental Clinic to anyone looking for quality dental care.",
     avatar: "SN",
+    rating: 5,
   },
   {
     id: 9,
     name: "Neha Garg",
-    role: "Teeth Whitening Patient",
+    role: "RCT (Root Canal Treatment) Patient",
     quote:
       "Dr Milan is very professional in her work. I felt so comfortable with the RCT process.. At first I was bit anxious but she handled me very calmly. Amazing doctor. Thanks Dr Milan.",
     avatar: "NG",
+    rating: 5,
   },
   {
     id: 10,
     name: "Manu Bansal",
-    role: "Teeth Whitening Patient",
+    role: "Preventive Dentistry Patient",
     quote:
       "Milan is a great dentist. She hears your problem with patience and provides the treatment after proper examination. Another great thing about her is that she never suggest you a treatment which is not required.",
     avatar: "MB",
+    rating: 5,
   },
 ];
 
 const Testimonial = () => {
-  const [isPaused, setIsPaused] = useState(false);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>(0);
-  const scrollPositionRef = useRef(0);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
 
-  const allTestimonials = [...testimonials, ...testimonials];
-
-  const animate = () => {
-    if (!isPaused && scrollContainerRef.current) {
-      scrollPositionRef.current += 1;
-      const maxScroll = scrollContainerRef.current.scrollWidth / 2;
-      if (scrollPositionRef.current >= maxScroll) {
-        scrollPositionRef.current = 0;
-      }
-      scrollContainerRef.current.scrollLeft = scrollPositionRef.current;
-    }
-    animationRef.current = requestAnimationFrame(animate);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDraggingRef.current = true;
+    startXRef.current = e.pageX - (scrollContainerRef.current?.offsetLeft || 0);
+    startScrollLeftRef.current = scrollContainerRef.current?.scrollLeft || 0;
   };
 
-  useEffect(() => {
-    animationRef.current = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [isPaused]);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current || !scrollContainerRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - (scrollContainerRef.current.offsetLeft || 0);
+    const walk = (x - startXRef.current) * 2;
+    scrollContainerRef.current.scrollLeft = startScrollLeftRef.current - walk;
+  };
+
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDraggingRef.current = true;
+    startXRef.current = e.touches[0].pageX - (scrollContainerRef.current?.offsetLeft || 0);
+    startScrollLeftRef.current = scrollContainerRef.current?.scrollLeft || 0;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingRef.current || !scrollContainerRef.current) return;
+    const x = e.touches[0].pageX - (scrollContainerRef.current.offsetLeft || 0);
+    const walk = (x - startXRef.current) * 2;
+    scrollContainerRef.current.scrollLeft = startScrollLeftRef.current - walk;
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+  };
 
   return (
     <section id="testimonial" className="bg-white py-24">
@@ -130,23 +158,30 @@ const Testimonial = () => {
         </div>
 
         <div className="relative">
-          {/* Left gradient blur */}
-          <div className="absolute left-0 top-0 bottom-0 w-24 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none"></div>
-
-          {/* Right gradient blur */}
-          <div className="absolute right-0 top-0 bottom-0 w-24 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none"></div>
-
           <div
             ref={scrollContainerRef}
-            className="overflow-x-hidden py-4"
-            onMouseEnter={() => setIsPaused(true)}
-            onMouseLeave={() => setIsPaused(false)}
+            className="overflow-x-auto py-4 cursor-grab active:cursor-grabbing"
+            style={{ 
+              scrollbarWidth: 'none',
+              msOverflowStyle: 'none'
+            }}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onTouchStart={handleTouchStart}
+            onTouchMove={handleTouchMove}
+            onTouchEnd={handleTouchEnd}
           >
-            <div className="flex gap-6" style={{ width: "max-content" }}>
-              {allTestimonials.map((testimonial, index) => (
+            <style>{`
+              div::-webkit-scrollbar {
+                display: none;
+              }
+            `}</style>
+            <div className="flex gap-6 px-2" style={{ width: "max-content" }}>
+              {testimonials.map((testimonial) => (
                 <div
-                  key={`${testimonial.id}-${index}`}
-                  className="w-[380px] md:max-w-80 bg-white border border-slate-100/80 rounded-2xl p-8 shadow-md shadow-slate-100/50 hover:shadow-xl hover:shadow-primary-900/5 hover:-translate-y-1.5 transition-all duration-300 flex flex-col"
+                  key={testimonial.id}
+                  className="w-[380px] md:max-w-80 bg-white border border-slate-100/80 rounded-2xl p-8 shadow-md shadow-slate-100/50 hover:shadow-xl hover:shadow-primary-900/5 hover:-translate-y-1.5 transition-all duration-300 flex flex-col flex-shrink-0"
                 >
                   <div className="text-primary-500 mb-5 opacity-40">
                     <svg
@@ -158,7 +193,18 @@ const Testimonial = () => {
                     </svg>
                   </div>
 
-                  <blockquote className="text-slate-600 text-base leading-relaxed mb-6 flex-1 line-clamp-6 font-normal">
+                  {testimonial.rating && (
+                    <div className="flex gap-1 mb-4">
+                      {[...Array(5)].map((_, i) => (
+                        <Star
+                          key={i}
+                          className={`w-5 h-5 ${i < (testimonial.rating ?? 0) ? 'text-yellow-400 fill-yellow-400' : 'text-slate-300'}`}
+                        />
+                      ))}
+                    </div>
+                  )}
+
+                  <blockquote className="text-slate-600 text-base leading-relaxed mb-6 flex-1 font-normal">
                     {testimonial.quote}
                   </blockquote>
 

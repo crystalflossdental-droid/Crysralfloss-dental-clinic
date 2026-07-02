@@ -79,14 +79,17 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex items-center">
             <img 
-              src="/assets/images/logo.png" 
+              src="/assets/images/footer_logo.png" 
               className={`transition-all duration-500 object-contain ${
                 isScrolled 
-                  ? 'h-10 w-10 md:h-12 md:w-12 lg:h-14 lg:w-14' 
-                  : 'h-12 w-12 md:h-16 md:w-16 lg:h-20 lg:w-20'
+                  ? 'h-16 w-16 md:h-20 md:w-20 lg:h-24 lg:w-24' 
+                  : 'h-20 w-20 md:h-28 md:w-28 lg:h-36 lg:w-36'
               }`}
             />
           </div>
+
+          {/* Clinic Name - Centered */}
+      
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex md:items-center md:space-x-1 lg:space-x-3 xl:space-x-6">
@@ -129,6 +132,15 @@ const Navbar = () => {
           >
             {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
+        </div>
+
+        {/* Mobile Clinic Name */}
+        <div className="lg:hidden text-center mt-2">
+          <h2 className={`text-lg font-bold font-heading ${
+            isScrolled ? 'text-slate-900' : 'text-white'
+          }`}>
+            CrystalFloss Dental Clinic
+          </h2>
         </div>
 
         {/* Mobile Navigation */}

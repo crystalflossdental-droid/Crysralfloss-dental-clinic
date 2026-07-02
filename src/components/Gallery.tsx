@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useRef } from "react";
 
 const galleryImages = Array.from(
   { length: 11 },
@@ -12,7 +12,6 @@ const galleryVideos = Array.from(
 
 const Gallery = () => {
   const [activeTab, setActiveTab] = useState<"images" | "videos">("images");
-  const [isPaused, setIsPaused] = useState(false);
 
   const [selectedMedia, setSelectedMedia] = useState<{
     type: "image" | "video";
@@ -20,32 +19,44 @@ const Gallery = () => {
   } | null>(null);
 
   const sliderRef = useRef<HTMLDivElement>(null);
-  const animationRef = useRef<number>(0);
-  const scrollPositionRef = useRef(0);
+  const isDraggingRef = useRef(false);
+  const startXRef = useRef(0);
+  const startScrollLeftRef = useRef(0);
 
-  const allImages = [...galleryImages, ...galleryImages];
-
-  const animate = () => {
-    if (!isPaused && sliderRef.current) {
-      scrollPositionRef.current += 0.3;
-
-      const maxScroll = sliderRef.current.scrollWidth / 2;
-
-      if (scrollPositionRef.current >= maxScroll) {
-        scrollPositionRef.current = 0;
-      }
-
-      sliderRef.current.scrollLeft = scrollPositionRef.current;
-    }
-
-    animationRef.current = requestAnimationFrame(animate);
+  const handleMouseDown = (e: React.MouseEvent) => {
+    isDraggingRef.current = true;
+    startXRef.current = e.pageX - (sliderRef.current?.offsetLeft || 0);
+    startScrollLeftRef.current = sliderRef.current?.scrollLeft || 0;
   };
 
-  useEffect(() => {
-    animationRef.current = requestAnimationFrame(animate);
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDraggingRef.current || !sliderRef.current) return;
+    e.preventDefault();
+    const x = e.pageX - (sliderRef.current.offsetLeft || 0);
+    const walk = (x - startXRef.current) * 2;
+    sliderRef.current.scrollLeft = startScrollLeftRef.current - walk;
+  };
 
-    return () => cancelAnimationFrame(animationRef.current);
-  }, [isPaused]);
+  const handleMouseUp = () => {
+    isDraggingRef.current = false;
+  };
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    isDraggingRef.current = true;
+    startXRef.current = e.touches[0].pageX - (sliderRef.current?.offsetLeft || 0);
+    startScrollLeftRef.current = sliderRef.current?.scrollLeft || 0;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!isDraggingRef.current || !sliderRef.current) return;
+    const x = e.touches[0].pageX - (sliderRef.current.offsetLeft || 0);
+    const walk = (x - startXRef.current) * 2;
+    sliderRef.current.scrollLeft = startScrollLeftRef.current - walk;
+  };
+
+  const handleTouchEnd = () => {
+    isDraggingRef.current = false;
+  };
 
   return (
     <section id="gallery" className="py-24 bg-[#F8FAFC]">
@@ -94,18 +105,27 @@ const Gallery = () => {
         {activeTab === "images" ? (
           <div data-aos="fade-up">
             <div className="relative">
-              <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
-
-              <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-[#F8FAFC] to-transparent z-10 pointer-events-none" />
-
               <div
                 ref={sliderRef}
-                className="overflow-x-hidden py-4"
-                onMouseEnter={() => setIsPaused(true)}
-                onMouseLeave={() => setIsPaused(false)}
+                className="overflow-x-auto py-4 cursor-grab active:cursor-grabbing"
+                style={{ 
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none'
+                }}
+                onMouseDown={handleMouseDown}
+                onMouseMove={handleMouseMove}
+                onMouseUp={handleMouseUp}
+                onTouchStart={handleTouchStart}
+                onTouchMove={handleTouchMove}
+                onTouchEnd={handleTouchEnd}
               >
-                <div className="flex gap-6" style={{ width: "max-content" }}>
-                  {allImages.map((image, index) => (
+                <style>{`
+                  div::-webkit-scrollbar {
+                    display: none;
+                  }
+                `}</style>
+                <div className="flex gap-6 px-2" style={{ width: "max-content" }}>
+                  {galleryImages.map((image, index) => (
                     <div
                       key={index}
                       className="relative w-56 md:w-64 aspect-[9/16] rounded-2xl overflow-hidden flex-shrink-0 border border-slate-200 shadow-md hover:shadow-xl transition-all"

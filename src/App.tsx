@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Hero from './components/Hero';
+
 import About from './components/About';
 import Treatments from './components/Treatments';
 import Gallery from './components/Gallery';
@@ -12,6 +12,8 @@ import WhatsAppButton from './components/WhatsAppButton';
 // Import AOS
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import Hero from './components/Hero';
+
 
 function App() {
   // Initialize AOS

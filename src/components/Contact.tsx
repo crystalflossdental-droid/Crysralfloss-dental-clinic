@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react';
 import Button from './common/Button';
-import { Phone, Mail, Send, MapPin, Check, Loader, AlertCircle } from 'lucide-react';
+import { Phone, Mail, Send, MapPin, Check, Loader, AlertCircle, Instagram } from 'lucide-react';
 import emailjs from "@emailjs/browser";
 
 
@@ -101,6 +101,23 @@ const handleSubmit = async (e: React.FormEvent) => {
                       <h4 className="font-bold font-heading text-slate-900 text-base">Email</h4>
                       <p className="text-slate-600 text-sm sm:text-base mt-0.5">crystalflossdental@gmail.com</p>
                     </div>
+                  </div>
+
+                  <div className="flex items-center" data-aos="fade-up" data-aos-delay="225">
+                    <a 
+                      href="https://www.instagram.com/crystalfloss.dentalclinic?igsh=OHFiZm5vcHM0a3hp" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="flex items-center"
+                    >
+                      <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary-50 border border-primary-100 text-primary-600 flex-shrink-0 mr-4 shadow-sm hover:bg-primary-100 transition-colors">
+                        <Instagram className="h-5 w-5" />
+                      </div>
+                      <div>
+                        <h4 className="font-bold font-heading text-slate-900 text-base">Instagram</h4>
+                        <p className="text-slate-600 text-sm sm:text-base mt-0.5">@crystalfloss.dentalclinic</p>
+                      </div>
+                    </a>
                   </div>
                   
                   <div className="flex items-start" data-aos="fade-up" data-aos-delay="250">

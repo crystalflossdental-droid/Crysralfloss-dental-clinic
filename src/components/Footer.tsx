@@ -20,7 +20,7 @@ const Footer = () => {
             </p>
             <div className="flex space-x-4">
               <a 
-                href="https://www.instagram.com/crystalfloss.dentalclinic?igsh=MWI4YXR3M25xMmdyYg==" 
+                href="https://www.instagram.com/crystalfloss.dentalclinic?igsh=OHFiZm5vcHM0a3hp" 
                 target="_blank" 
                 rel="noopener noreferrer" 
                 className="h-10 w-10 rounded-full bg-slate-800 border border-slate-700/50 flex items-center justify-center transition-all hover:bg-primary-600 hover:border-primary-500 hover:scale-110"
