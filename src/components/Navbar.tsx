@@ -103,8 +103,8 @@ const Navbar = () => {
               src="/assets/images/footer_logo.png" 
               className={`hidden md:block transition-all duration-500 object-contain max-w-[200px] ${
                 isScrolled 
-                  ? 'h-16 w-auto' 
-                  : 'h-24 w-auto'
+                  ? 'w-60 h-20' 
+                  : 'w-60 h-20'
               }`} 
               alt="CrystalFloss Dental Clinic"
             />
