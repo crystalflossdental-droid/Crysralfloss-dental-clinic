@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {  Phone, Mail, MapPin, Instagram } from 'lucide-react';
 
 
@@ -11,16 +11,15 @@ const Footer = () => {
         <div className="grid md:grid-cols-3 gap-12">
           <div className="space-y-6">
             <div className="flex items-center">
-              <img src="/assets/images/footer_logo.png" className="w-16 h-16 object-contain" />
-              <div className="ml-3">
-                <span className="text-xl font-bold font-heading tracking-tight text-white">CrystalFloss</span>
+              <img src="/assets/images/footer_logo.png" className="w-20 h-20 object-contain" />
+              <div className="ml-4">
+                <span className="text-3xl sm:text-4xl font-bold font-heading tracking-tight text-white">CrystalFloss</span>
                 <br />
-                <span className="text-sm font-medium font-heading tracking-tight text-slate-300">Dental Clinic</span>
+                <span className="text-base sm:text-lg font-medium font-heading tracking-tight text-slate-300">Dental Clinic</span>
               </div>
             </div>
             <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-              Premium dental care for international patients in India. 
-              World-class treatments at affordable prices with a memorable experience.
+              Premium dental care for everyone in Noida and NCR. World-class treatments at honest prices, with an experience you'll remember.
             </p>
             <div className="flex space-x-4 items-center">
               <a 

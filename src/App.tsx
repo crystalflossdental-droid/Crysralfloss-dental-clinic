@@ -6,6 +6,7 @@ import Treatments from './components/Treatments';
 import Gallery from './components/Gallery';
 import Testimonial from './components/Testimonial';
 import Contact from './components/Contact';
+import GoogleMap from './components/GoogleMap';
 import Footer from './components/Footer';
 import WhatsAppButton from './components/WhatsAppButton';
 
@@ -37,6 +38,7 @@ function App() {
         <Gallery />
         <Testimonial />
         <Contact />
+        <GoogleMap />
       </main>
       <Footer />
       <WhatsAppButton phoneNumber="919560726424" message="Hello! I'd like to schedule a dental appointment at CrystalFloss Dental Clinic." />

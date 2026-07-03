@@ -92,8 +92,8 @@ const Navbar = () => {
               src="/assets/images/footer_logo.png" 
               className={`transition-all duration-500 object-contain ${
                 isScrolled 
-                  ? 'w-12 h-12 md:w-16 md:h-16' 
-                  : 'w-16 h-16'
+                  ? 'w-12 h-12 md:w-24 md:h-24' 
+                  : 'w-24 h-24'
               }`} 
             />
             

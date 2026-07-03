@@ -138,10 +138,10 @@ const handleSubmit = async (e: React.FormEvent) => {
               <ul className="space-y-3.5">
                 {[
                   "Get a personalized treatment plan",
-                  "Receive a detailed cost estimate",
-                  "Plan your travel and accommodation",
+                  "Receive a clear, upfront cost estimate — no hidden charges",
                   "Ask questions about any dental procedure",
-                  "Schedule a virtual consultation"
+                  "Schedule a consultation at your convenience",
+                  "Experience treatment explained in simple, honest terms"
                 ].map((item, index) => (
                   <li key={index} className="flex items-start" data-aos="fade-up" data-aos-delay={350 + index * 50}>
                     <Check className="h-5 w-5 text-primary-600 mr-3 mt-0.5 flex-shrink-0" />
