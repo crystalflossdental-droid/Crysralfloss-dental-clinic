@@ -26,7 +26,7 @@ const About = () => {
     <section id="about" className="py-24 bg-[#F8FAFC]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Clinic Overview */}
-        <div className="max-w-4xl mx-auto text-center mb-20" data-aos="fade-up">
+        <div className="max-w-7xl mx-auto text-center mb-20" data-aos="fade-up">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-slate-900 mb-6 tracking-tight">
             Welcome to CrystalFloss Dental Clinic
           </h2>

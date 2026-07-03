@@ -6,19 +6,15 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-gradient-to-br from-slate-900 to-slate-950 border-t border-slate-800/80 text-white font-sans">
+    <footer className="bg-gradient-to-br from-[#eff6fc] to-blue-50 border-t border-blue-100 text-slate-900 font-sans">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div className="grid md:grid-cols-3 gap-12">
           <div className="space-y-6">
             <div className="flex items-center">
-              <img src="/assets/images/footer_logo.png" className="w-20 h-20 object-contain" />
-              <div className="ml-4">
-                <span className="text-3xl sm:text-4xl font-bold font-heading tracking-tight text-white">CrystalFloss</span>
-                <br />
-                <span className="text-base sm:text-lg font-medium font-heading tracking-tight text-slate-300">Dental Clinic</span>
-              </div>
+              <img src="/assets/images/footer_logo.png" className="w-60 h-20 object-contain" />
+            
             </div>
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-600 text-sm sm:text-base leading-relaxed">
               Premium dental care for everyone in Noida and NCR. World-class treatments at honest prices, with an experience you'll remember.
             </p>
             <div className="flex space-x-4 items-center">
@@ -26,10 +22,10 @@ const Footer = () => {
                 href="https://www.instagram.com/crystalfloss.dentalclinic?igsh=OHFiZm5vcHM0a3hp" 
                 target="_blank" 
                 rel="noopener noreferrer" 
-                className="flex items-center gap-3 px-4 py-2 rounded-full bg-slate-800 border border-slate-700/50 transition-all hover:bg-primary-600 hover:border-primary-500 hover:scale-105"
+                className="flex items-center gap-3 px-4 py-2 rounded-full bg-white border border-blue-200 transition-all hover:bg-primary-600 hover:border-primary-500 hover:scale-105 hover:text-white"
               >
-                <Instagram className="h-5 w-5 text-white" />
-                <span className="text-sm font-medium text-slate-300 hover:text-white">@crystalfloss.dentalclinic</span>
+                <Instagram className="h-5 w-5 text-primary-600 hover:text-white" />
+                <span className="text-sm font-medium text-slate-700 hover:text-white">@crystalfloss.dentalclinic</span>
               </a>
             </div>
           </div>
@@ -46,7 +42,7 @@ const Footer = () => {
                 <li key={index}>
                   <a 
                     href={link.href} 
-                    className="text-slate-400 hover:text-primary-400 transition-colors text-sm sm:text-base inline-block py-0.5 hover:underline decoration-primary-500 underline-offset-4"
+                    className="text-slate-600 hover:text-primary-600 transition-colors text-sm sm:text-base inline-block py-0.5 hover:underline decoration-primary-500 underline-offset-4"
                     onClick={(e) => {
                       e.preventDefault();
                       const element = document.getElementById(link.href.substring(1));
@@ -66,22 +62,22 @@ const Footer = () => {
             <h3 className="text-lg font-bold font-heading tracking-wide mb-6 border-l-4 border-primary-500 pl-3">Contact Information</h3>
             <ul className="space-y-4 text-sm sm:text-base">
               <li className="flex items-start">
-                <Phone className="h-5 w-5 text-primary-400 mr-3 mt-1 cursor-pointer flex-shrink-0" />
-                <span className="text-slate-400">+91 9560726424</span>
+                <Phone className="h-5 w-5 text-primary-600 mr-3 mt-1 cursor-pointer flex-shrink-0" />
+                <span className="text-slate-600">+91 9560726424</span>
               </li>
               <li className="flex items-start">
-                <Mail className="h-5 w-5 text-primary-400 mr-3 mt-1 cursor-pointer flex-shrink-0" />
-                <span className="text-slate-400 break-all">crystalflossdental@gmail.com</span>
+                <Mail className="h-5 w-5 text-primary-600 mr-3 mt-1 cursor-pointer flex-shrink-0" />
+                <span className="text-slate-600 break-all">crystalflossdental@gmail.com</span>
               </li>
               <li className="flex items-start">
-                <MapPin className="h-5 w-5 text-primary-400 mr-3 mt-1 cursor-pointer flex-shrink-0" />
-                <span className="text-slate-400 leading-relaxed">Shop No. 6, First Floor, B-Block, Sector 52, Noida - 201301</span>
+                <MapPin className="h-5 w-5 text-primary-600 mr-3 mt-1 cursor-pointer flex-shrink-0" />
+                <span className="text-slate-600 leading-relaxed">Shop No. 6, First Floor, B-Block, Sector 52, Noida - 201301</span>
               </li>
             </ul>
           </div>
         </div>
 
-        <div className="border-t border-slate-800 mt-16 pt-8 text-center text-slate-500 text-sm">
+        <div className="border-t border-blue-100 mt-16 pt-8 text-center text-slate-500 text-sm">
           <p>© {currentYear} crystalfloss dental clinic. All rights reserved.</p>
         </div>
       </div>

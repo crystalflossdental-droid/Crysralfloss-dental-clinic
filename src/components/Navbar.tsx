@@ -92,32 +92,12 @@ const Navbar = () => {
               src="/assets/images/footer_logo.png" 
               className={`transition-all duration-500 object-contain ${
                 isScrolled 
-                  ? 'w-12 h-12 md:w-24 md:h-24' 
-                  : 'w-24 h-24'
+                  ? 'w-16 h-14 md:w-56 md:h-20' 
+                  : 'w-60 h-20'
               }`} 
             />
             
-            {/* Clinic Name - Two lines: CrystalFloss on top, Dental Clinic below */}
-            <div className={`ml-4 transition-all duration-500 ${
-              isScrolled 
-                ? 'text-slate-900' 
-                : 'text-white'
-            }`}>
-              <h1 className={`font-bold font-heading capitalize ${
-                isScrolled 
-                  ? 'text-base md:text-lg lg:text-xl' 
-                  : 'text-base md:text-lg lg:text-xl'
-              }`}>
-                CrystalFloss
-              </h1>
-              <h2 className={`font-medium font-heading capitalize ${
-                isScrolled 
-                  ? 'text-xs md:text-sm lg:text-base' 
-                  : 'text-xs md:text-sm lg:text-base'
-              }`}>
-                Dental Clinic
-              </h2>
-            </div>
+            
           </div>
 
           {/* Right: Desktop Navigation and Button */}
