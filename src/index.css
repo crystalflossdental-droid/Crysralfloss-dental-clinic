@@ -7,14 +7,18 @@ html {
   overflow-x: hidden;
 }
 
-* {
-  overflow-x: hidden;
-}
-
 body {
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
   background-color: #F8FAFC;
+}
+
+/* Ensure all text wraps properly */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
 }
 
 .logo-text {

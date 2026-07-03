@@ -77,16 +77,18 @@ const Navbar = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between relative">
           {/* Mobile Menu Toggle - Left */}
-          <button
-            onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden focus:outline-none text-gray-800 z-10"
-            aria-label="Toggle mobile menu"
-          >
-            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
+          <div className="w-6 flex items-center justify-start">
+            <button
+              onClick={() => setIsOpen(!isOpen)}
+              className="md:hidden focus:outline-none text-gray-800 z-10"
+              aria-label="Toggle mobile menu"
+            >
+              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+          </div>
 
           {/* Center: Logo - All Screens */}
-          <div className="flex-1 flex justify-center items-center">
+          <div className="flex-1 flex justify-center md:justify-start items-center">
             <img
               src="/assets/images/mobile-logo.png"
               alt="CrystalFloss Dental Clinic"

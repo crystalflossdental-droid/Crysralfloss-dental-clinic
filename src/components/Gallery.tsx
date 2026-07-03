@@ -61,10 +61,7 @@ const Gallery = () => {
   return (
     <section id="gallery" className="py-24 bg-[#F8FAFC]">
       <div className="mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className="max-w-3xl mx-auto text-center mb-20"
-          data-aos="fade-up"
-        >
+        <div className="max-w-3xl mx-auto text-center mb-20">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-heading text-slate-900 mb-4">
             Our Gallery
           </h2>
@@ -103,7 +100,7 @@ const Gallery = () => {
 
         {/* IMAGE TAB */}
         {activeTab === "images" ? (
-          <div data-aos="fade-up">
+          <div>
             <div className="relative">
               <div
                 ref={sliderRef}
@@ -128,13 +125,13 @@ const Gallery = () => {
                   {galleryImages.map((image, index) => (
                     <div
                       key={index}
-                      className="relative w-56 md:w-64 aspect-[9/16] rounded-2xl overflow-hidden flex-shrink-0 border border-slate-200 shadow-md hover:shadow-xl transition-all"
+                      className="relative w-56 md:w-64 aspect-[9/16] rounded-2xl overflow-hidden flex-shrink-0 border border-slate-200 shadow-md"
                     >
                       <img
                         src={image}
                         alt={`Gallery ${index + 1}`}
                         loading="lazy"
-                        className="w-full h-full object-cover cursor-pointer transition-transform duration-500 hover:scale-105"
+                        className="w-full h-full object-cover cursor-pointer"
                         onClick={() =>
                           setSelectedMedia({
                             type: "image",
@@ -150,37 +147,78 @@ const Gallery = () => {
           </div>
         ) : (
           /* VIDEO TAB */
-          <div
-            data-aos="fade-up"
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {galleryVideos.map((video, index) => (
-              <div
-                key={index}
-                className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md aspect-[9/16]"
-              >
-                <video
-                  src={video}
-                  muted
-                  loop
-                  playsInline
-                  preload="metadata"
-                  controls={false}
-                  className="w-full h-full object-cover cursor-pointer"
-                  onMouseEnter={(e) => e.currentTarget.play()}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.pause();
-                    e.currentTarget.currentTime = 0;
-                  }}
-                  onClick={() =>
-                    setSelectedMedia({
-                      type: "video",
-                      src: video,
-                    })
-                  }
-                />
+          <div>
+            <div className="relative">
+              {/* Mobile: Horizontal Scroll */}
+              <div className="md:hidden">
+                <div className="overflow-x-auto py-4">
+                  <style>{`
+                    div::-webkit-scrollbar {
+                      display: none;
+                    }
+                  `}</style>
+                  <div className="flex gap-6 px-2" style={{ width: "max-content" }}>
+                    {galleryVideos.map((video, index) => (
+                      <div
+                        key={index}
+                        className="relative w-56 aspect-[9/16] rounded-2xl overflow-hidden flex-shrink-0 border border-slate-200 shadow-md"
+                      >
+                        <video
+                          src={video}
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                          controls={false}
+                          className="w-full h-full object-cover cursor-pointer"
+                          onMouseEnter={(e) => e.currentTarget.play()}
+                          onMouseLeave={(e) => {
+                            e.currentTarget.pause();
+                            e.currentTarget.currentTime = 0;
+                          }}
+                          onClick={() =>
+                            setSelectedMedia({
+                              type: "video",
+                              src: video,
+                            })
+                          }
+                        />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            ))}
+              {/* Desktop: Grid */}
+              <div className="hidden md:grid grid-cols-2 lg:grid-cols-4 gap-6">
+                {galleryVideos.map((video, index) => (
+                  <div
+                    key={index}
+                    className="relative rounded-2xl overflow-hidden border border-slate-200 shadow-md aspect-[9/16]"
+                  >
+                    <video
+                      src={video}
+                      muted
+                      loop
+                      playsInline
+                      preload="metadata"
+                      controls={false}
+                      className="w-full h-full object-cover cursor-pointer"
+                      onMouseEnter={(e) => e.currentTarget.play()}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.pause();
+                        e.currentTarget.currentTime = 0;
+                      }}
+                      onClick={() =>
+                        setSelectedMedia({
+                          type: "video",
+                          src: video,
+                        })
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         )}
 
