@@ -12,7 +12,7 @@ A modern, responsive dental clinic website built to provide patients with a seam
    ```bash
    git clone https://github.com/your-username/dentalsmile.git
    cd dentalsmile
-   ```
+   ````
 
 2. Install project dependencies:
    ```bash
