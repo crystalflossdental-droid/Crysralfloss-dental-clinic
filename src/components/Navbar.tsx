@@ -1,8 +1,8 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿
+import React, { useState, useEffect } from 'react';
 import Button from './common/Button';
 import { Menu as Menu, X, Phone } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -36,7 +36,7 @@ const Navbar = () => {
 
   // IntersectionObserver for active section
   useEffect(() => {
-    const sectionIds = ['home', 'about',  'treatments', 'gallery', 'testimonial', 'contact'];
+    const sectionIds = ['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'];
     const sections = sectionIds.map((id) => document.getElementById(id)).filter(Boolean) as HTMLElement[];
 
     const observer = new IntersectionObserver(
@@ -69,43 +69,38 @@ const Navbar = () => {
   return (
     <header
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
-        isScrolled 
-          ? 'bg-white/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm py-3' 
-          : 'bg-transparent py-5'
+        isScrolled
+          ? 'bg-white/80 backdrop-blur-md border-b border-slate-200/50 shadow-sm py-3'
+          : 'bg-white md:bg-transparent py-3 md:py-5'
       }`}
     >
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between">
-          {/* Left: Logo and Clinic Name */}
-          <div className="flex items-center">
-            {/* Mobile Menu Toggle - Only on mobile, before logo */}
-            <button
-              onClick={() => setIsOpen(!isOpen)}
-              className={`md:hidden focus:outline-none mr-4 ${isScrolled ? 'text-gray-800' : 'text-white'}`}
-              aria-label="Toggle mobile menu"
-            >
-              {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-            </button>
-            
-            {/* Logo */}
-            {/* Mobile Logo */}
-            <img 
-              src="/assets/images/mobile-logo.png" 
-              className={`md:hidden transition-all duration-500 object-contain max-w-[150px] ${
-                isScrolled 
-                  ? 'h-10 w-auto' 
-                  : 'h-14 w-auto'
-              }`} 
+        <div className="flex items-center justify-between relative">
+          {/* Mobile Menu Toggle - Left */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden focus:outline-none text-gray-800 z-10"
+            aria-label="Toggle mobile menu"
+          >
+            {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+          </button>
+
+          {/* Center: Logo - All Screens */}
+          <div className="flex-1 flex justify-center items-center">
+            <img
+              src="/assets/images/mobile-logo.png"
               alt="CrystalFloss Dental Clinic"
+              className={`object-contain transition-all duration-500 md:hidden ${
+                isScrolled
+                  ? "h-10 max-w-[180px]"
+                  : "h-12 max-w-[220px]"
+              }`}
             />
-            {/* Desktop Logo */}
-            <img 
-              src="/assets/images/footer_logo.png" 
-              className={`hidden md:block transition-all duration-500 object-contain max-w-[200px] ${
-                isScrolled 
-                  ? 'w-60 h-20' 
-                  : 'w-60 h-20'
-              }`} 
+            <img
+              src="/assets/images/footer_logo.png"
+              className={`transition-all duration-500 object-contain hidden md:block ${
+                isScrolled ? 'w-60 h-20' : 'w-60 h-20'
+              }`}
               alt="CrystalFloss Dental Clinic"
             />
           </div>
@@ -113,23 +108,25 @@ const Navbar = () => {
           {/* Right: Desktop Navigation and Button */}
           <div className="hidden md:flex md:items-center md:space-x-6">
             <nav className="flex items-center space-x-1 lg:space-x-3 xl:space-x-6">
-              {['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`capitalize font-heading font-semibold transition-all duration-300 border-b-2 pb-1 text-sm lg:text-base px-1 ${
-                    activeSection === item
-                      ? isScrolled
-                        ? 'text-primary-600 border-primary-600'
-                        : 'text-white border-white'
-                      : isScrolled
-                      ? 'text-slate-600 border-transparent hover:text-primary-600 hover:border-primary-600/30'
-                      : 'text-white border-transparent hover:text-white hover:border-white/50'
-                  }`}
-                >
-                  {item}
-                </button>
-              ))}
+              {['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'].map(
+                (item) => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className={`capitalize font-heading font-semibold transition-all duration-300 border-b-2 pb-1 text-sm lg:text-base px-1 ${
+                      activeSection === item
+                        ? isScrolled
+                          ? 'text-primary-600 border-primary-600'
+                          : 'text-white border-white'
+                        : isScrolled
+                        ? 'text-slate-600 border-transparent hover:text-primary-600 hover:border-primary-600/30'
+                        : 'text-white border-transparent hover:text-white hover:border-white/50'
+                    }`}
+                  >
+                    {item}
+                  </button>
+                )
+              )}
             </nav>
 
             {/* Desktop Contact Button */}
@@ -139,9 +136,12 @@ const Navbar = () => {
               size="sm"
             >
               <Phone className="h-4 w-4 mr-2" />
-              Get in Touch 
+              Get in Touch
             </Button>
           </div>
+
+          {/* Right: Spacer for Mobile to keep logo centered */}
+          <div className="md:hidden w-6"></div>
         </div>
 
         {/* Mobile Navigation */}
@@ -156,22 +156,24 @@ const Navbar = () => {
               className="md:hidden mt-4 py-6 bg-white rounded-2xl border border-slate-100 shadow-xl shadow-slate-100/50"
             >
               <nav className="flex flex-col space-y-4 px-6 text-center">
-                {['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'].map((item) => (
-                  <button
-                    key={item}
-                    onClick={() => {
-                      scrollToSection(item);
-                      setIsOpen(false);
-                    }}
-                    className={`capitalize font-heading font-semibold py-2 transition-all ${
-                      activeSection === item 
-                        ? 'text-primary-600 bg-primary-50/50 rounded-xl' 
-                        : 'text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-xl'
-                    }`}
-                  >
-                    {item}
-                  </button>
-                ))}
+                {['home', 'about', 'treatments', 'gallery', 'testimonial', 'contact'].map(
+                  (item) => (
+                    <button
+                      key={item}
+                      onClick={() => {
+                        scrollToSection(item);
+                        setIsOpen(false);
+                      }}
+                      className={`capitalize font-heading font-semibold py-2 transition-all ${
+                        activeSection === item
+                          ? 'text-primary-600 bg-primary-50/50 rounded-xl'
+                          : 'text-slate-600 hover:text-primary-600 hover:bg-slate-50 rounded-xl'
+                      }`}
+                    >
+                      {item}
+                    </button>
+                  )
+                )}
 
                 <div className="pt-2">
                   <Button
@@ -196,3 +198,4 @@ const Navbar = () => {
 };
 
 export default Navbar;
+

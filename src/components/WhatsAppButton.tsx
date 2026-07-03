@@ -15,10 +15,9 @@ const WhatsAppButton: React.FC<WhatsAppButtonProps> = ({ phoneNumber, message })
       href={whatsappUrl}
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-6 right-6 bg-[#25D366] hover:bg-[#22c35e] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 z-50 cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95 animate-float"
-      style={{ animationDuration: '3s' }}
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 bg-[#25D366] hover:bg-[#22c35e] text-white rounded-full w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center shadow-lg shadow-green-500/30 hover:shadow-xl hover:shadow-green-500/40 z-[9999] cursor-pointer transition-all duration-300 hover:scale-110 active:scale-95"
     >
-      <FaWhatsapp size={30} />
+      <FaWhatsapp size={24} className="sm:text-3xl" />
     </a>
   );
 };
