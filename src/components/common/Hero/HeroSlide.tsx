@@ -8,7 +8,7 @@ interface HeroSlideProps {
 
 const HeroSlide: React.FC<HeroSlideProps> = ({ slide }) => {
   return (
-    <div className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-screen">
+    <div className="relative min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-screen">
       <div className="absolute inset-0">
         <img
           src={slide.image}
@@ -16,10 +16,10 @@ const HeroSlide: React.FC<HeroSlideProps> = ({ slide }) => {
           className="w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-slate-950/45" />
-        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/45" />
+        <div className="absolute inset-0 bg-slate-950/55" />
+        <div className="absolute inset-0 bg-gradient-to-t from-slate-950/85 via-transparent to-slate-950/55" />
       </div>
-      <div className="relative min-h-[60vh] sm:min-h-[70vh] md:min-h-[80vh] lg:min-h-screen flex items-center justify-center">
+      <div className="relative min-h-[80vh] sm:min-h-[85vh] md:min-h-[90vh] lg:min-h-screen flex items-center justify-center pt-24 sm:pt-28 md:pt-20">
         <HeroContent
           title={slide.title}
           subtitle={slide.subtitle}

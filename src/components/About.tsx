@@ -1,26 +1,14 @@
-import React, { useState, useRef } from 'react';
-import { CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+
+import { CheckCircle } from 'lucide-react';
 
 import Button from './common/Button';
 
-const clinicImages = [
-  '/assets/images/1.jpg',
-  '/assets/images/2.jpg',
-  '/assets/images/3.jpg',
-  '/assets/images/4.jpg',
-];
+
 
 const About = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const sliderRef = useRef<HTMLDivElement>(null);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % clinicImages.length);
-  };
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + clinicImages.length) % clinicImages.length);
-  };
+
 
   return (
     <section id="about" className="py-24 bg-[#F8FAFC]">
@@ -40,41 +28,7 @@ const About = () => {
             From young children to seniors, our compassionate team is dedicated to making every visit comfortable, stress-free, and welcoming. At CrystalFloss Dental Clinic, we don't just treat teeth—we care for people, building lifelong relationships as your trusted family dentist.
           </p>
           
-          {/* Clinic Photos Slider */}
-          <div className="relative max-w-6xl mx-auto" data-aos="fade-up">
-            <div className="relative overflow-hidden rounded-3xl shadow-xl border-4 border-white">
-              <div
-                ref={sliderRef}
-                className="flex transition-transform duration-500 ease-in-out"
-                style={{ transform: `translateX(-${currentIndex * 100}%)` }}
-              >
-                {clinicImages.map((image, index) => (
-                  <div key={index} className="min-w-full">
-                    <img
-                      src={image}
-                      alt={`CrystalFloss Dental Clinic ${index + 1}`}
-                      className="w-full h-auto object-cover"
-                      style={{ aspectRatio: '16/9' }}
-                    />
-                  </div>
-                ))}
-              </div>
-              
-              {/* Navigation Arrows */}
-              <button
-                onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary-600 p-3 rounded-full shadow-lg transition-all hover:scale-110"
-              >
-                <ChevronLeft className="w-6 h-6" />
-              </button>
-              <button
-                onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 hover:bg-white text-primary-600 p-3 rounded-full shadow-lg transition-all hover:scale-110"
-              >
-                <ChevronRight className="w-6 h-6" />
-              </button>
-            </div>
-          </div>
+       
         </div>
 
         {/* Dr. Millan's Section */}
